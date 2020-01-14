@@ -31,14 +31,19 @@ namespace HelloApp
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            int x = 5;
+            int y = 8;
+            int z = 0;
 
-            app.UseEndpoints(endpoints =>
+            app.Use(async (context, next) =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync($"Application name: {Environment.ApplicationName}");
-                });
+                z = x * y;
+                await next();
+            });
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync($"{x} * {y} = {z}");
             });
         }
     }
