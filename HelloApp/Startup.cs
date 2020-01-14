@@ -35,6 +35,12 @@ namespace HelloApp
             int y = 8;
             int z = 0;
 
+            app.Map("/index", appBuilder => appBuilder.Run(async ctx => await ctx.Response.WriteAsync("Index") ) );//отображает маршрут на отдельный конвеер запросов
+            app.Map("/home", home =>
+            {
+                home.Map("/about", appBuilder => appBuilder.Run(async ctx => await ctx.Response.WriteAsync("Home/About") ) );
+            });
+
             app.Use(async (context, next) =>
             {
                 z = x * y;
