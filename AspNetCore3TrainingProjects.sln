@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloApp", "HelloApp\HelloA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExeptionHandle", "ExeptionHandle\ExeptionHandle.csproj", "{B9690CBE-F6AE-4F66-9E69-5A3C1558B2A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpsApp", "HttpsApp\HttpsApp.csproj", "{60BF0894-450F-46A1-92F0-EE27B2F60B50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B9690CBE-F6AE-4F66-9E69-5A3C1558B2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9690CBE-F6AE-4F66-9E69-5A3C1558B2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9690CBE-F6AE-4F66-9E69-5A3C1558B2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60BF0894-450F-46A1-92F0-EE27B2F60B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BF0894-450F-46A1-92F0-EE27B2F60B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BF0894-450F-46A1-92F0-EE27B2F60B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BF0894-450F-46A1-92F0-EE27B2F60B50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
