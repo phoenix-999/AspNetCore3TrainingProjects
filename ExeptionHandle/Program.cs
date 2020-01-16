@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace HelloApp
+namespace ExeptionHandle
 {
     public class Program
     {
@@ -21,7 +21,6 @@ namespace HelloApp
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseWebRoot("static");
                 });
     }
 }
