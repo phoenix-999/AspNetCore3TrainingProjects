@@ -18,13 +18,22 @@ namespace DependencyInjectionApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IMessageSender, EmailMessageSender>();
+            services.AddTransient<IMessageSender>(provider => {
+
+                if (DateTime.Now.Hour >= 12) return new EmailMessageSender();
+                else return new SmsMessageSender();
+            });
             services.AddTimeService();
+
+            services.AddTransient<ICounter, RandomCounter>();
+            services.AddTransient<CounterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IMessageSender sender, TimeService timeService)
         {
+            app.UseMiddleware<CounterMiddleware>();
+
             app.Run(async ctx =>
             {
                 ctx.Response.ContentType = "text/plain;charset=utf-8";
