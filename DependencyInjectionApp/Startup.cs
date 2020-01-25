@@ -27,6 +27,10 @@ namespace DependencyInjectionApp
 
             services.AddTransient<ICounter, RandomCounter>();
             services.AddTransient<CounterService>();
+
+            services.AddTransient<TransientService>();
+            services.AddScoped<ScopedService>();
+            services.AddSingleton<SingletonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
