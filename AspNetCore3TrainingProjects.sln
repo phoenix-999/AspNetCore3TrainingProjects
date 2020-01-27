@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpsApp", "HttpsApp\HttpsA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionApp", "DependencyInjectionApp\DependencyInjectionApp.csproj", "{B496DC53-8451-4EFD-9A49-6A8E2C9244E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sessions", "Sessions\Sessions.csproj", "{3F202452-80E6-4DE9-8B01-FB533DBEDABE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sessions", "Sessions\Sessions.csproj", "{3F202452-80E6-4DE9-8B01-FB533DBEDABE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "Logging\Logging.csproj", "{BEFD17B0-5343-4072-8EF5-405B22BF37E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3F202452-80E6-4DE9-8B01-FB533DBEDABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F202452-80E6-4DE9-8B01-FB533DBEDABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F202452-80E6-4DE9-8B01-FB533DBEDABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEFD17B0-5343-4072-8EF5-405B22BF37E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEFD17B0-5343-4072-8EF5-405B22BF37E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEFD17B0-5343-4072-8EF5-405B22BF37E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEFD17B0-5343-4072-8EF5-405B22BF37E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
