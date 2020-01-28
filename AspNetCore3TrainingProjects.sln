@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "Logging\Logging.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutingApp", "RoutingApp\RoutingApp.csproj", "{73FD05A0-1E89-4D09-AFD6-D804A67AB948}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileStore", "MobileStore\MobileStore.csproj", "{48F245B9-A4E5-4709-B334-D1BA79DBF6E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{73FD05A0-1E89-4D09-AFD6-D804A67AB948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73FD05A0-1E89-4D09-AFD6-D804A67AB948}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73FD05A0-1E89-4D09-AFD6-D804A67AB948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48F245B9-A4E5-4709-B334-D1BA79DBF6E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F245B9-A4E5-4709-B334-D1BA79DBF6E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F245B9-A4E5-4709-B334-D1BA79DBF6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F245B9-A4E5-4709-B334-D1BA79DBF6E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
