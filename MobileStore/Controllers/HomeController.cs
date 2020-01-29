@@ -25,5 +25,26 @@ namespace MobileStore.Controllers
             return View(_db.Phones.ToList());
         }
 
+        [HttpGet]
+        public IActionResult Buy(string id)
+        {
+            if (id == null)
+                return RedirectToAction(nameof(Index));
+            ViewBag.PhoneId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public string Buy(Order order)
+        {
+            if(ModelState.IsValid)
+            {
+                _db.Orders.Add(order);
+                _db.SaveChanges();
+                return "Спасибо, " + order.User + ", за покупку!";
+            }
+            return "Произошла ошибка";
+        }
+
     }
 }
