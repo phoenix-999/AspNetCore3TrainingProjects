@@ -1,0 +1,1036 @@
+Count tables: 36
+Table: AdventureWorksDWBuildVersion
+--------------------------------
+Column NAME: DBVersion, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: VersionDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DatabaseLog
+--------------------------------
+Column NAME: DatabaseLogID, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: PostTime, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DatabaseUser, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Event, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Schema, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Object, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TSQL, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: XmlEvent, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimAccount
+--------------------------------
+Column NAME: AccountKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ParentAccountKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AccountCodeAlternateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ParentAccountCodeAlternateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AccountDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AccountType, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Operator, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomMembers, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ValueType, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomMemberOptions, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimCurrency
+--------------------------------
+Column NAME: CurrencyKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: CurrencyAlternateKey, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CurrencyName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimCustomer
+--------------------------------
+Column NAME: CustomerKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: GeographyKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomerAlternateKey, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Title, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FirstName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MiddleName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LastName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NameStyle, TYPE: System.Boolean, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: BirthDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MaritalStatus, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Suffix, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Gender, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmailAddress, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: YearlyIncome, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TotalChildren, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NumberChildrenAtHome, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishEducation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishEducation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchEducation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishOccupation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishOccupation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchOccupation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: HouseOwnerFlag, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NumberCarsOwned, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AddressLine1, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AddressLine2, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Phone, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DateFirstPurchase, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CommuteDistance, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimDate
+--------------------------------
+Column NAME: DateKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FullDateAlternateKey, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DayNumberOfWeek, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishDayNameOfWeek, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishDayNameOfWeek, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchDayNameOfWeek, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DayNumberOfMonth, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DayNumberOfYear, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: WeekNumberOfYear, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishMonthName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishMonthName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchMonthName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MonthNumberOfYear, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CalendarQuarter, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CalendarYear, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CalendarSemester, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FiscalQuarter, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FiscalYear, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FiscalSemester, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimDepartmentGroup
+--------------------------------
+Column NAME: DepartmentGroupKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ParentDepartmentGroupKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DepartmentGroupName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimEmployee
+--------------------------------
+Column NAME: EmployeeKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ParentEmployeeKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmployeeNationalIDAlternateKey, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ParentEmployeeNationalIDAlternateKey, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesTerritoryKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FirstName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LastName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MiddleName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NameStyle, TYPE: System.Boolean, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Title, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: HireDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: BirthDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LoginID, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmailAddress, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Phone, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MaritalStatus, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmergencyContactName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmergencyContactPhone, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalariedFlag, TYPE: System.Boolean, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Gender, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: PayFrequency, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: BaseRate, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: VacationHours, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SickLeaveHours, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CurrentFlag, TYPE: System.Boolean, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesPersonFlag, TYPE: System.Boolean, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DepartmentName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: StartDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EndDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Status, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmployeePhoto, TYPE: System.Byte[], IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimGeography
+--------------------------------
+Column NAME: GeographyKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: City, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: StateProvinceCode, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: StateProvinceName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CountryRegionCode, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishCountryRegionName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishCountryRegionName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchCountryRegionName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: PostalCode, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesTerritoryKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: IpAddressLocator, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimOrganization
+--------------------------------
+Column NAME: OrganizationKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ParentOrganizationKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: PercentageOfOwnership, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrganizationName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CurrencyKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimProduct
+--------------------------------
+Column NAME: ProductKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ProductAlternateKey, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductSubcategoryKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: WeightUnitMeasureCode, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SizeUnitMeasureCode, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishProductName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishProductName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchProductName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: StandardCost, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FinishedGoodsFlag, TYPE: System.Boolean, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Color, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SafetyStockLevel, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ReorderPoint, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ListPrice, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Size, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SizeRange, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Weight, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DaysToManufacture, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductLine, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DealerPrice, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Class, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Style, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ModelName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LargePhoto, TYPE: System.Byte[], IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ChineseDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ArabicDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: HebrewDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ThaiDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: GermanDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: JapaneseDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TurkishDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: StartDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EndDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Status, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimProductCategory
+--------------------------------
+Column NAME: ProductCategoryKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ProductCategoryAlternateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishProductCategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishProductCategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchProductCategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimProductSubcategory
+--------------------------------
+Column NAME: ProductSubcategoryKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ProductSubcategoryAlternateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishProductSubcategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishProductSubcategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchProductSubcategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductCategoryKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimPromotion
+--------------------------------
+Column NAME: PromotionKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: PromotionAlternateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishPromotionName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishPromotionName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchPromotionName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DiscountPct, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishPromotionType, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishPromotionType, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchPromotionType, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishPromotionCategory, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishPromotionCategory, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchPromotionCategory, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: StartDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EndDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MinQty, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MaxQty, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimReseller
+--------------------------------
+Column NAME: ResellerKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: GeographyKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ResellerAlternateKey, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Phone, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: BusinessType, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ResellerName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NumberEmployees, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderFrequency, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderMonth, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FirstOrderYear, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LastOrderYear, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductLine, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AddressLine1, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AddressLine2, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AnnualSales, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: BankName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MinPaymentType, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MinPaymentAmount, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AnnualRevenue, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: YearOpened, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimSalesReason
+--------------------------------
+Column NAME: SalesReasonKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: SalesReasonAlternateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesReasonName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesReasonReasonType, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimSalesTerritory
+--------------------------------
+Column NAME: SalesTerritoryKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: SalesTerritoryAlternateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesTerritoryRegion, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesTerritoryCountry, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesTerritoryGroup, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesTerritoryImage, TYPE: System.Byte[], IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: DimScenario
+--------------------------------
+Column NAME: ScenarioKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ScenarioName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactAdditionalInternationalProductDescription
+--------------------------------
+Column NAME: ProductKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CultureName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductDescription, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactCallCenter
+--------------------------------
+Column NAME: FactCallCenterID, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: DateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: WageType, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Shift, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LevelOneOperators, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LevelTwoOperators, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TotalOperators, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Calls, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AutomaticResponses, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Orders, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: IssuesRaised, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AverageTimePerIssue, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ServiceGrade, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Date, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactCurrencyRate
+--------------------------------
+Column NAME: CurrencyKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AverageRate, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EndOfDayRate, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Date, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactFinance
+--------------------------------
+Column NAME: FinanceKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: DateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrganizationKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DepartmentGroupKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ScenarioKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AccountKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Amount, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Date, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactInternetSales
+--------------------------------
+Column NAME: ProductKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderDateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DueDateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ShipDateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomerKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: PromotionKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CurrencyKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesTerritoryKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesOrderNumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesOrderLineNumber, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: RevisionNumber, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderQuantity, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: UnitPrice, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ExtendedAmount, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: UnitPriceDiscountPct, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DiscountAmount, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductStandardCost, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TotalProductCost, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesAmount, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TaxAmt, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Freight, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CarrierTrackingNumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomerPONumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DueDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ShipDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactInternetSalesReason
+--------------------------------
+Column NAME: SalesOrderNumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesOrderLineNumber, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesReasonKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactProductInventory
+--------------------------------
+Column NAME: ProductKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MovementDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: UnitCost, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: UnitsIn, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: UnitsOut, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: UnitsBalance, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactResellerSales
+--------------------------------
+Column NAME: ProductKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderDateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DueDateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ShipDateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ResellerKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmployeeKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: PromotionKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CurrencyKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesTerritoryKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesOrderNumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesOrderLineNumber, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: RevisionNumber, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderQuantity, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: UnitPrice, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ExtendedAmount, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: UnitPriceDiscountPct, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DiscountAmount, TYPE: System.Double, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductStandardCost, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TotalProductCost, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesAmount, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TaxAmt, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Freight, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CarrierTrackingNumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomerPONumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DueDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ShipDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactSalesQuota
+--------------------------------
+Column NAME: SalesQuotaKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: EmployeeKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CalendarYear, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CalendarQuarter, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SalesAmountQuota, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Date, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: FactSurveyResponse
+--------------------------------
+Column NAME: SurveyResponseKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: DateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomerKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductCategoryKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishProductCategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: ProductSubcategoryKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishProductSubcategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Date, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: NewFactCurrencyRate
+--------------------------------
+Column NAME: AverageRate, TYPE: System.Single, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CurrencyID, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CurrencyDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EndOfDayRate, TYPE: System.Single, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CurrencyKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DateKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: ProspectiveBuyer
+--------------------------------
+Column NAME: ProspectiveBuyerKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: ProspectAlternateKey, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FirstName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MiddleName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LastName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: BirthDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MaritalStatus, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Gender, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmailAddress, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: YearlyIncome, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TotalChildren, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NumberChildrenAtHome, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Education, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Occupation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: HouseOwnerFlag, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NumberCarsOwned, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AddressLine1, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AddressLine2, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: City, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: StateProvinceCode, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: PostalCode, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Phone, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Salutation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Unknown, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: sysdiagrams
+--------------------------------
+Column NAME: name, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: principal_id, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: diagram_id, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: True(0,1)
+
+Column NAME: version, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: definition, TYPE: System.Byte[], IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: vAssocSeqLineItems
+--------------------------------
+Column NAME: OrderNumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LineNumber, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Model, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: vAssocSeqOrders
+--------------------------------
+Column NAME: OrderNumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomerKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Region, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: IncomeGroup, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: vDMPrep
+--------------------------------
+Column NAME: EnglishProductCategoryName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Model, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomerKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Region, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Age, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: IncomeGroup, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CalendarYear, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FiscalYear, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Month, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: OrderNumber, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LineNumber, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Quantity, TYPE: System.Int16, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Amount, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: vTargetMail
+--------------------------------
+Column NAME: CustomerKey, TYPE: System.Int32, IS UNIQUE: True, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: GeographyKey, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CustomerAlternateKey, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Title, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FirstName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MiddleName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: LastName, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NameStyle, TYPE: System.Boolean, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: BirthDate, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: MaritalStatus, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Suffix, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Gender, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EmailAddress, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: YearlyIncome, TYPE: System.Decimal, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: TotalChildren, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NumberChildrenAtHome, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishEducation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishEducation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchEducation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: EnglishOccupation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: SpanishOccupation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: FrenchOccupation, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: HouseOwnerFlag, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: NumberCarsOwned, TYPE: System.Byte, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AddressLine1, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: AddressLine2, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Phone, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: DateFirstPurchase, TYPE: System.DateTime, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: CommuteDistance, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Region, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: Age, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+Column NAME: BikeBuyer, TYPE: System.Int32, IS UNIQUE: False, IS AUTO INCREMENT: False(0,1)
+
+
+
+
+
+Table: vTimeSeries
+--------------------------------
+Column NAME: ModelRegion, TYPE: System.String, IS UNIQUE: False, IS AUTO INCREMENT: False(0,
