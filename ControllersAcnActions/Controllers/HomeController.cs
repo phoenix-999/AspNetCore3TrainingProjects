@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ControllersAcnActions.Controllers
 {
@@ -53,6 +54,20 @@ namespace ControllersAcnActions.Controllers
             string filePath = Path.Combine("~Files", "file.txt"); //wwwroot/Files/file.txt
             string contentType = "text/plain";//application/octet-stream если формат файла заранее не известен
             return File(filePath, contentType, "file.txt");//contentType - обязательный параметр
+        }
+
+        [NonAction]
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if(context.HttpContext.Request.Headers.ContainsKey("User-Agent"))
+            {
+                string browser = context.HttpContext.Request.Headers["User-Agent"];
+                if(browser.Contains("MSIE") || browser.Contains("Trident"))
+                {
+                    context.Result = Content("Internet Explorer не поддреживается");
+                }
+            }
+            base.OnActionExecuting(context);
         }
     }
 }
