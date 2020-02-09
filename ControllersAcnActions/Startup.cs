@@ -33,6 +33,7 @@ namespace ControllersAcnActions
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "", pattern:"{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapFallbackToController("Fallback", "Home");
             });
         }
     }

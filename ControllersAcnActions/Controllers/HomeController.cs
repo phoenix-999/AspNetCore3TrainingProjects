@@ -69,5 +69,10 @@ namespace ControllersAcnActions.Controllers
             }
             base.OnActionExecuting(context);
         }
+
+        public IActionResult Fallback()
+        {
+            return Content($"Путь {Request.Path} не существует.");
+        }
     }
 }

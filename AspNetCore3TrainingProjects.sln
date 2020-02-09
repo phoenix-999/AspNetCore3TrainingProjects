@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoutingApp", "RoutingApp\Ro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore", "MobileStore\MobileStore.csproj", "{48F245B9-A4E5-4709-B334-D1BA79DBF6E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllersAcnActions", "ControllersAcnActions\ControllersAcnActions.csproj", "{6BFC6A82-FDEB-4E00-872F-D14ADBC35CB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllersAcnActions", "ControllersAcnActions\ControllersAcnActions.csproj", "{6BFC6A82-FDEB-4E00-872F-D14ADBC35CB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
