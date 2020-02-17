@@ -1,0 +1,52 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Список пользователей</h2>
+
+<div>
+    <span class="text-center">Фильтры</span>
+    <form asp-action="Index" method="get">
+        <input type="hidden" name="sortOrder" value="@Model.SortUserViewModel.Current" />
+        <label asp-for="Filters.UserName">Имя пользователя</label>
+        <input asp-for="Filters.UserName" />
+
+        <label asp-for="Filters.Companies">Компании</label>
+        <select multiple asp-for="Filters.SelectedCompanies" asp-items="Model.Filters.Companies">
+            <option value="0" selected>All</option>
+        </select>
+        <input type="submit" class="btn btn-secondary" value="Accept"/>
+    </form>
+</div>
+
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a
+                   asp-action="Index"
+                   asp-route-sortOrder="@Model.SortUserViewModel.UserNameOrder"
+                   class="btn btn-primary"
+                   style="width: 100%">Имя пользвателя
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" class="btn btn-primary" style="width: 100%" asp-route-sortOrder="@Model.SortUserViewModel.UserAgeOrder">Возраст</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@Model.SortUserViewModel.CompanyNameOrder" class="btn btn-primary" style="width: 100%">Компания</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Age</td>
+                <td>@user.Company.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

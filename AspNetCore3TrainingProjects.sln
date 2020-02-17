@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllersAcnActions", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagHelpersApp", "TagHelpersApp\TagHelpersApp.csproj", "{877261AF-58AE-41AD-AB98-29E4BBD6A674}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortPaginationFilters", "SortPaginationFilters\SortPaginationFilters.csproj", "{009266F1-D85A-45D3-90FE-C491765A0A5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{877261AF-58AE-41AD-AB98-29E4BBD6A674}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{877261AF-58AE-41AD-AB98-29E4BBD6A674}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{877261AF-58AE-41AD-AB98-29E4BBD6A674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{009266F1-D85A-45D3-90FE-C491765A0A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{009266F1-D85A-45D3-90FE-C491765A0A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{009266F1-D85A-45D3-90FE-C491765A0A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{009266F1-D85A-45D3-90FE-C491765A0A5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
