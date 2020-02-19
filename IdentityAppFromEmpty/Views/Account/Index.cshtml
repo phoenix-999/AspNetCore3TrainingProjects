@@ -1,17 +1,27 @@
 ﻿@model IEnumerable<User>
+@inject Microsoft.AspNetCore.Identity.UserManager<User> _userManager
 <h2>Пользователи</h2>
 <table class="table table-sm table-bordered table-striped">
     <thead>
         <tr>
             <th colspan="2">Имя пользователя</th>
+            <td>Роли</td>
         </tr>
     </thead>
     <tbody>
-        @foreach(var user in Model)
+        @foreach (var user in Model)
         {
             <tr>
                 <td>@user.UserName</td>
                 <td><a asp-action="Edit" asp-controller="Account" class="btn btn-secondary">Изменить</a></td>
+                <td>
+                    <ul>
+                        @foreach (var role in await _userManager.GetRolesAsync(user))
+                        {
+                            <li>@role</li>
+                        }
+                    </ul>
+                </td>
             </tr>
         }
     </tbody>

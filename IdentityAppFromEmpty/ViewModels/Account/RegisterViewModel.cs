@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace IdentityAppFromEmpty.ViewModels.Account
     {
         [Required(ErrorMessage = "Не введено имя пользователя")]
         [Display(Name = "Имя пользователя")]
+        [Remote("CheckUserName", "Account", ErrorMessage = "Это имя уже занято")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Не введен пароль")]

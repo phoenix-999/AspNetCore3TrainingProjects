@@ -23,9 +23,11 @@ namespace IdentityAppFromEmpty.Contorllers
             _signInManager = signInManager;
         }
 
+        [Authorize(Roles = "Admins")]
         public IActionResult Index()
         {
-            return View(_userManager.Users);
+            var users = _userManager.Users.ToList();
+            return View(users);
         }
 
         [AllowAnonymous]
@@ -38,6 +40,10 @@ namespace IdentityAppFromEmpty.Contorllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
             var result = await _signInManager.PasswordSignInAsync(model.Name, model.Password, true, false);
             if (result.Succeeded)
             {
@@ -94,6 +100,15 @@ namespace IdentityAppFromEmpty.Contorllers
                 return View(model);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> CheckUserName(string name)
+        {
+            User user = await _userManager.FindByNameAsync(name);
+            if (user == null)
+                return Json(true);
+            return Json(false);
         }
     }
 }
