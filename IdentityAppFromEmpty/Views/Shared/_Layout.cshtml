@@ -8,6 +8,10 @@
     <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
 </head>
 <body class="m-1 p-1">
+    @if (User?.Identity?.IsAuthenticated ?? false)
+    {
+        <a asp-action="Logout" asp-controller="Account" class="btn btn-secondary" style="float: right">Выйти</a>
+    }
     <div>
         @RenderBody()
     </div>

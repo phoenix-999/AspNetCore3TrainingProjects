@@ -1,0 +1,19 @@
+﻿@model IEnumerable<User>
+<h2>Пользователи</h2>
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr>
+            <th colspan="2">Имя пользователя</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td><a asp-action="Edit" asp-controller="Account" class="btn btn-secondary">Изменить</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

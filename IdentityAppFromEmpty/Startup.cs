@@ -25,13 +25,13 @@ namespace IdentityAppFromEmpty
         IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IdentityDbContext>(builder =>
+            services.AddDbContext<AppIdentityDbContext>(builder =>
             {
                 builder.UseSqlServer(Configuration["ConnectionStrings:IdentityDb"]);
             });
 
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityDbContext>();
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
 
             services.AddControllersWithViews();
         }

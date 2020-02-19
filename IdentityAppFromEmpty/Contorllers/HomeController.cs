@@ -12,6 +12,7 @@ namespace IdentityAppFromEmpty.Contorllers
     {
         public IActionResult Index()
         {
+            ViewBag.UserName = User?.Identity?.Name;
             return View();
         }
     }

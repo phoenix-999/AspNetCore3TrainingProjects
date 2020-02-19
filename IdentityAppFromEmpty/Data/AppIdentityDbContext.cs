@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace IdentityAppFromEmpty.Data
 {
-    public class IdentityDbContext : IdentityDbContext<User>
+    public class AppIdentityDbContext : IdentityDbContext<User>
     {
-        public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
+        public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options)
             : base(options)
         {
             Database.EnsureCreated();
@@ -19,11 +19,7 @@ namespace IdentityAppFromEmpty.Data
 
 
         protected override void OnModelCreating(ModelBuilder builder)
-        {
-            IdentityRole roleAdmin = new IdentityRole { Id = "1", Name = "Admins" };
-            builder.Entity<IdentityRole>().HasData(roleAdmin);
-            SaveChanges();
-            
+        {         
             base.OnModelCreating(builder);
         }
     }
