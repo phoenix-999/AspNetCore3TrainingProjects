@@ -21,13 +21,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore", "MobileStore\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllersAcnActions", "ControllersAcnActions\ControllersAcnActions.csproj", "{6BFC6A82-FDEB-4E00-872F-D14ADBC35CB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagHelpersApp", "TagHelpersApp\TagHelpersApp.csproj", "{877261AF-58AE-41AD-AB98-29E4BBD6A674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagHelpersApp", "TagHelpersApp\TagHelpersApp.csproj", "{877261AF-58AE-41AD-AB98-29E4BBD6A674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortPaginationFilters", "SortPaginationFilters\SortPaginationFilters.csproj", "{009266F1-D85A-45D3-90FE-C491765A0A5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SortPaginationFilters", "SortPaginationFilters\SortPaginationFilters.csproj", "{009266F1-D85A-45D3-90FE-C491765A0A5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityApp", "IdentityApp\IdentityApp.csproj", "{898D7975-A47A-46B8-B633-8C87858AFBC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityApp", "IdentityApp\IdentityApp.csproj", "{898D7975-A47A-46B8-B633-8C87858AFBC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityAppFromEmpty", "IdentityAppFromEmpty\IdentityAppFromEmpty.csproj", "{59BC57E8-ED7D-4AD5-9C50-3B2C743E88C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityAppFromEmpty", "IdentityAppFromEmpty\IdentityAppFromEmpty.csproj", "{59BC57E8-ED7D-4AD5-9C50-3B2C743E88C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTestsTutorial", "UnitTestsTutorial", "{C820DBFA-26CF-47DD-90EC-190964356FAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestApp", "UnitTestApp\UnitTestApp.csproj", "{94A243F5-39F9-4F2E-91F9-62C25D75D590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestApp.Tests", "UnitTestApp.Tests\UnitTestApp.Tests.csproj", "{F6B4674D-7883-4CA5-B33E-99D54996B5AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,9 +93,21 @@ Global
 		{59BC57E8-ED7D-4AD5-9C50-3B2C743E88C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59BC57E8-ED7D-4AD5-9C50-3B2C743E88C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59BC57E8-ED7D-4AD5-9C50-3B2C743E88C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A243F5-39F9-4F2E-91F9-62C25D75D590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A243F5-39F9-4F2E-91F9-62C25D75D590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A243F5-39F9-4F2E-91F9-62C25D75D590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A243F5-39F9-4F2E-91F9-62C25D75D590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6B4674D-7883-4CA5-B33E-99D54996B5AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B4674D-7883-4CA5-B33E-99D54996B5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B4674D-7883-4CA5-B33E-99D54996B5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B4674D-7883-4CA5-B33E-99D54996B5AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94A243F5-39F9-4F2E-91F9-62C25D75D590} = {C820DBFA-26CF-47DD-90EC-190964356FAC}
+		{F6B4674D-7883-4CA5-B33E-99D54996B5AF} = {C820DBFA-26CF-47DD-90EC-190964356FAC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E79129DF-B4F3-459E-83C5-01D43D59FD06}
