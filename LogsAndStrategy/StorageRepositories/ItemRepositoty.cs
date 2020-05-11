@@ -1,4 +1,5 @@
 ﻿using LogsAndStrategy.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NLog.Fluent;
@@ -23,10 +24,15 @@ namespace LogsAndStrategy.StorageRepositories
 
         public async virtual Task<IList<Item>> GetAll()
         {
-            return await _ctx.Items.ToListAsync();
+            return await _ctx.Items.Include(i => i.Tags).ToListAsync();
         }
 
-        public async virtual Task<Item> Add(Item item)
+        public virtual Item GetItem(string name)
+        {
+            return _ctx.Items.Include(i => i.Tags).FirstOrDefault(i => i.Name == name);
+        }
+
+        public async virtual Task<Item> AddItem(Item item)
         {
 
             //using (var transaction = new TransactionScope()) //Ошибка при выбранной стратегии устойчевого выполнения 
@@ -37,9 +43,9 @@ namespace LogsAndStrategy.StorageRepositories
             //}
 
 
+            var strategy = _ctx.Database.CreateExecutionStrategy(); //Можно создать без opt => opt.EnableRetryOnFailure() в конфигурцаии UseSqlServer
             //Решение 1
             //Но не учтена ошибка при фиксации транзакции (напр. прерывание соединения, а данные уже сохранены в бд)
-            var strategy = _ctx.Database.CreateExecutionStrategy();
             //await strategy.Execute(async () => 
             //{
             //    using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled)) 
@@ -63,7 +69,7 @@ namespace LogsAndStrategy.StorageRepositories
                 {
                     context.SaveChanges(acceptAllChangesOnSuccess: false); //Асинхронная операция выбросить ошибку
                 },
-                verifySucceeded: context =>
+                verifySucceeded: context => //Вызывается в случае определенной ошибки в первом делегате. Может быть не вызван
                 {
                     //Если false - можно описать логику возвращения состояния контекста до очередного запуска транзакции
                     return context.Transactions.AsNoTracking().Any(t => t.Id == transaction.Id);
@@ -75,5 +81,30 @@ namespace LogsAndStrategy.StorageRepositories
 
             return item;
         }
+    
+        public async virtual Task<Item> AddItem(string name)
+        {
+            var item = _ctx.Add(new Item(name)).Entity;
+
+            var strategy = _ctx.Database.CreateExecutionStrategy();
+            var transaction =_ctx.Transactions.Add(new AppTransaction()).Entity;
+
+            await strategy.ExecuteInTransactionAsync<AppDbContext>(_ctx,
+                operation: async (context, token) =>
+                {
+                    await context.SaveChangesAsync(acceptAllChangesOnSuccess: false);
+                },
+                verifySucceeded: async (context, token) =>
+                {
+                    return await context.Transactions.AsNoTracking().AnyAsync(t => t.Id == transaction.Id);
+                });
+            _ctx.ChangeTracker.AcceptAllChanges();
+            _ctx.Transactions.Remove(transaction);
+            _ctx.SaveChanges();
+
+            return item;
+        }
+
+        
     }
 }

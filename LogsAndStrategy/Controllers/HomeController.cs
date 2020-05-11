@@ -29,7 +29,7 @@ namespace LogsAndStrategy.Controllers
         [HttpPost]
         public async Task<IActionResult> AddItem()
         {
-            await _itemRepository.Add(new Item());
+            await _itemRepository.AddItem(Guid.NewGuid().ToString());
             return RedirectToAction(nameof(Index));
         }
 

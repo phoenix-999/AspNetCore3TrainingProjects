@@ -9,6 +9,8 @@ namespace LogsAndStrategy.StorageRepositories
     public interface IItemRepository
     {
         Task<IList<Item>> GetAll();
-        Task<Item> Add(Item item);
+        Item GetItem(string name);
+        Task<Item> AddItem(Item item);
+        Task<Item> AddItem(string name);
     }
 }

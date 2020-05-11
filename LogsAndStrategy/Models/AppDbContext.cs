@@ -19,6 +19,7 @@ namespace LogsAndStrategy.Models
         }
 
         public DbSet<Item> Items { get; set; }
+        public DbSet<Tag> Tags { get; set; }
         public DbSet<AppTransaction> Transactions { get; set; }
 
         protected virtual void Seek()
@@ -27,17 +28,7 @@ namespace LogsAndStrategy.Models
 
             if (newDbCreated)
             {
-                var item1 = new Item();
-                var item2 = new Item();
-                Items.AddRange(item1, item2);
-
-                SaveChanges();
-
-                item1.Count = 1;
-                var item3 = new Item();
-                Items.Add(item3);
-
-                SaveChanges();
+                
             }
         }
 
@@ -51,13 +42,22 @@ namespace LogsAndStrategy.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Item>(ItemConfig);
+            modelBuilder.Entity<Tag>(TagConfig);
         }
 
         protected internal virtual void ItemConfig(EntityTypeBuilder<Item> builder)
         {
             builder.Property("_id");
             builder.HasKey("_id");
-            builder.Property("Name");
+            builder.Property(i => i.Name);
+            builder.HasMany(i => i.Tags).WithOne().IsRequired();
+        }
+
+        protected internal void TagConfig(EntityTypeBuilder<Tag> builder)
+        {
+            builder.Property("_id");
+            builder.HasKey("_id");
+            builder.Property(t => t.Label);
         }
     }
 }
