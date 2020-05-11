@@ -1,0 +1,14 @@
+﻿@model IList<Item>
+
+<div class="text-center">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+    <div>Count: @Model.Count</div>
+    <form method="post" asp-action="AddItem" asp-controller="Home">
+        <input type="submit" value="Add new"/>
+    </form>
+</div>

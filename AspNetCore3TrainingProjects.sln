@@ -31,9 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityAppFromEmpty", "Ide
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTestsTutorial", "UnitTestsTutorial", "{C820DBFA-26CF-47DD-90EC-190964356FAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestApp", "UnitTestApp\UnitTestApp.csproj", "{94A243F5-39F9-4F2E-91F9-62C25D75D590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestApp", "UnitTestApp\UnitTestApp.csproj", "{94A243F5-39F9-4F2E-91F9-62C25D75D590}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestApp.Tests", "UnitTestApp.Tests\UnitTestApp.Tests.csproj", "{F6B4674D-7883-4CA5-B33E-99D54996B5AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestApp.Tests", "UnitTestApp.Tests\UnitTestApp.Tests.csproj", "{F6B4674D-7883-4CA5-B33E-99D54996B5AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EF Core", "EF Core", "{DA96EA9F-9B88-47EE-9960-B8DA836A97C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogsAndStrategy", "LogsAndStrategy\LogsAndStrategy.csproj", "{4106E554-1130-4939-A4B8-95AF758051A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +105,10 @@ Global
 		{F6B4674D-7883-4CA5-B33E-99D54996B5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6B4674D-7883-4CA5-B33E-99D54996B5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6B4674D-7883-4CA5-B33E-99D54996B5AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4106E554-1130-4939-A4B8-95AF758051A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4106E554-1130-4939-A4B8-95AF758051A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4106E554-1130-4939-A4B8-95AF758051A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4106E554-1130-4939-A4B8-95AF758051A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +116,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{94A243F5-39F9-4F2E-91F9-62C25D75D590} = {C820DBFA-26CF-47DD-90EC-190964356FAC}
 		{F6B4674D-7883-4CA5-B33E-99D54996B5AF} = {C820DBFA-26CF-47DD-90EC-190964356FAC}
+		{4106E554-1130-4939-A4B8-95AF758051A4} = {DA96EA9F-9B88-47EE-9960-B8DA836A97C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E79129DF-B4F3-459E-83C5-01D43D59FD06}
