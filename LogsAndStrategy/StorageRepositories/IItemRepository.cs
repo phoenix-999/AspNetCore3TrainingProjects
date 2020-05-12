@@ -12,5 +12,7 @@ namespace LogsAndStrategy.StorageRepositories
         Item GetItem(string name);
         Task<Item> AddItem(Item item);
         Task<Item> AddItem(string name);
+        Task<Tag> AddTag(string label, string itemName);
+        Task<Item> RemoveItem(string name);
     }
 }

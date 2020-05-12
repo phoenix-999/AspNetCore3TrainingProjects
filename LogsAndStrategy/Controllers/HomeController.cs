@@ -27,9 +27,24 @@ namespace LogsAndStrategy.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddItem()
+        public async Task<IActionResult> PostItem(string itemName)
         {
-            await _itemRepository.AddItem(Guid.NewGuid().ToString());
+            await _itemRepository.AddItem(itemName);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostTag(string label, string itemName)
+        {
+            await _itemRepository.AddTag(label, itemName);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteTag(string itemName)
+        {
+            await _itemRepository.RemoveItem(itemName);
             return RedirectToAction(nameof(Index));
         }
 

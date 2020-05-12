@@ -105,6 +105,22 @@ namespace LogsAndStrategy.StorageRepositories
             return item;
         }
 
-        
+        public async virtual Task<Tag> AddTag(string label, string itemName)
+        {
+            var tag = _ctx.Items.Include(i => i.Tags).Single(i => i.Name == itemName).AddTag(label);
+            await _ctx.SaveChangesAsync();
+            return tag;
+        }
+    
+        public virtual Task<Item> RemoveItem(string name)
+        {
+            var item = _ctx.Items.FirstOrDefault(i => i.Name == name);
+            if(item != null)
+            {
+                _ctx.Items.Remove(item);
+                _ctx.SaveChanges();
+            }
+            return Task.FromResult(item);
+        }
     }
 }
