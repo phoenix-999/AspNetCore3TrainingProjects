@@ -9,6 +9,7 @@ namespace LogsAndStrategy.Tests
 {
     public class AppContextTest : AppDbContext
     {
+        public static string ConnectionString { get; } = "Data Source =.; Initial Catalog = Tutorials.Tests; Integrated Security = true";
         public AppContextTest(DbContextOptions<AppDbContext> options, bool seed)
             :base(options)
         {
@@ -18,7 +19,7 @@ namespace LogsAndStrategy.Tests
 
         public AppContextTest(bool seed=false)
             : this(new DbContextOptionsBuilder<AppDbContext>()
-                .UseSqlServer("Data Source =.; Initial Catalog = Tutorials.Tests; Integrated Security = true")
+                .UseSqlServer(ConnectionString)
                 .Options, seed) {}
 
         private void Seed()
