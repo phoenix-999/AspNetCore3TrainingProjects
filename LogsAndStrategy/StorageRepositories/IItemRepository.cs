@@ -1,4 +1,5 @@
 ﻿using LogsAndStrategy.Models;
+using Microsoft.AspNetCore.Http.Features;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace LogsAndStrategy.StorageRepositories
         Item GetItem(string name);
         Task<Item> AddItem(Item item);
         Task<Item> AddItem(string name);
+        Task<int> AddItems(params Item[] items);
         Task<Tag> AddTag(string label, string itemName);
         Task<Item> RemoveItem(string name);
     }

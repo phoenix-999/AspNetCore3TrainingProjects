@@ -211,5 +211,68 @@ namespace LogsAndStrategy.Tests
 
             Assert.Equal("Name, LastName", emp.EmployeeFullName);
         }
+
+        [Fact]
+        public void CanHandleDbConcurencyException()
+        {
+            var emp = new Employee() { RowVersion="First"};
+            using(var ctx = new AppContextTest(true))
+            {
+                ctx.Employees.Add(emp);
+                ctx.SaveChanges();
+            }
+
+            Assert.NotEqual(default, emp.EmployeeId);
+
+            using(var ctx = new AppContextTest())
+            {
+                var receivedEmp = ctx.Employees.Single(e => e.EmployeeId == emp.EmployeeId);
+
+                ctx.Database.OpenConnection();
+                ctx.Database.ExecuteSqlRaw("update Employees set RowVersion='Second_1'  where EmployeeId={0}", emp.EmployeeId);
+
+                receivedEmp.RowVersion = "Second_2";
+
+                bool saved = false;
+                while (!saved)
+                {
+                    try
+                    {
+                        //var ex = Assert.Throws<DbUpdateConcurrencyException>(() => ctx.SaveChanges());
+                        //if(ex != null)
+                        //    throw ex;
+                        ctx.SaveChanges();
+                        saved = true;
+                    }
+                    catch (DbUpdateConcurrencyException ex)
+                    {
+                        foreach(var entry in ex.Entries)
+                        {
+                            var proposedValues = entry.CurrentValues;
+                            var dbValues = entry.GetDatabaseValues();
+
+                            foreach(var property in proposedValues.Properties)
+                            {
+                                var proposedValue = proposedValues[property];
+                                var dbValue = dbValues[property];
+                                if(property.Name == "RowVersion")
+                                    Assert.Equal("Second_1", dbValue);
+                                //Logic handle
+                                //proposedValues[property] = dbValue;
+                            }
+                            entry.OriginalValues.SetValues(dbValues);                            
+                        }
+                    }
+                }
+
+                Assert.True(saved);
+            }
+
+            using (var ctx = new AppContextTest())
+            {
+                var receivedEmp = ctx.Employees.Single(e => e.EmployeeId == emp.EmployeeId);
+                Assert.Equal("Second_2", receivedEmp.RowVersion);
+            }
+        }
     }
 }

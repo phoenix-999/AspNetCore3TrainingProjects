@@ -23,10 +23,16 @@ namespace LogsAndStrategy.Models
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
         public DbSet<AppTransaction> Transactions { get; set; }
+
+        public delegate void ActionBuilder(ModelBuilder builder);
+        public static event ActionBuilder EventActionBuilder;
 
         protected virtual void Seek()
         {
+            Database.EnsureDeleted();
             bool newDbCreated = Database.EnsureCreated();
 
             if (newDbCreated)
@@ -47,6 +53,10 @@ namespace LogsAndStrategy.Models
             modelBuilder.Entity<Item>(ItemConfig);
             modelBuilder.Entity<Tag>(TagConfig);
             modelBuilder.Entity<Employee>(EmployeeConfig);
+            modelBuilder.Entity<Blog>(BlogConfig);
+
+            if(EventActionBuilder != null)
+                EventActionBuilder(modelBuilder);
         }
 
         protected virtual void ItemConfig(EntityTypeBuilder<Item> builder)
@@ -78,6 +88,14 @@ namespace LogsAndStrategy.Models
             builder.Property(e => e.Description).HasDefaultValue("No description");
 
             builder.Property(e => e.EmployeeFullName).HasComputedColumnSql("EmployeeName + ', ' + EmployeeLastName");
+        }
+
+        protected virtual void BlogConfig(EntityTypeBuilder<Blog> builder)
+        {
+            builder.HasIndex(b => b.BlogId);
+            builder.HasIndex(b => new { b.BlogId, b.BlogName})
+                .IsUnique()
+                .HasFilter("BlogName is not null");//По умолчанию в уникальных индексах поставщика SqlServer. Дл отмены HasFilter("null")
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,5 +25,7 @@ namespace LogsAndStrategy.Models
         public Guid Guid { get; set; }
         public DateTime? LastPayRaise { get; set; }
         public string Description { get; set; }
+        [ConcurrencyCheck]
+        public string RowVersion { get; set; }
     }
 }

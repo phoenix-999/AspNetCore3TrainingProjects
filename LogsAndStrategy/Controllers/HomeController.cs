@@ -23,6 +23,9 @@ namespace LogsAndStrategy.Controllers
 
         public async Task<IActionResult> Index()
         {
+            await _itemRepository.AddItems(new Item("Item 1"), new Item("Item 2"));
+
+
             return View(await _itemRepository.GetAll());
         }
 
@@ -32,6 +35,7 @@ namespace LogsAndStrategy.Controllers
             await _itemRepository.AddItem(itemName);
             return RedirectToAction(nameof(Index));
         }
+
 
         [HttpPost]
         public async Task<IActionResult> PostTag(string label, string itemName)

@@ -1,10 +1,13 @@
 ﻿using LogsAndStrategy.Models;
+using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NLog.Fluent;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -67,7 +70,8 @@ namespace LogsAndStrategy.StorageRepositories
             strategy.ExecuteInTransaction(_ctx,
                 operation: (context) =>
                 {
-                    context.SaveChanges(acceptAllChangesOnSuccess: false); //Асинхронная операция выбросить ошибку
+                    context.SaveChanges(acceptAllChangesOnSuccess: false);//ChangeTracking не участвует в откате транзакции
+
                 },
                 verifySucceeded: context => //Вызывается в случае определенной ошибки в первом делегате. Может быть не вызван
                 {
@@ -93,6 +97,7 @@ namespace LogsAndStrategy.StorageRepositories
                 operation: async (context, token) =>
                 {
                     await context.SaveChangesAsync(acceptAllChangesOnSuccess: false);
+                    //ChangeTracking не участвует в откате транзакции
                 },
                 verifySucceeded: async (context, token) =>
                 {
@@ -103,6 +108,31 @@ namespace LogsAndStrategy.StorageRepositories
             _ctx.SaveChanges();
 
             return item;
+        }
+
+        public async virtual Task<int> AddItems(params Item[] items)
+        {
+            _ctx.Items.AddRange(items);
+            var transaction = new AppTransaction();
+            _ctx.Transactions.Add(transaction);
+            int result = 0;
+            var strategy = _ctx.Database.CreateExecutionStrategy();
+            try
+            {
+                Debug.WriteLine(_ctx.Entry(transaction).State);//Added
+                strategy.ExecuteInTransaction(
+                    operation: () =>
+                    {
+                        result = _ctx.SaveChanges();
+                        throw new ConnectionAbortedException();
+                    },
+                    verifySucceeded: () => _ctx.Transactions.AsNoTracking().Any(t => t.Id == transaction.Id)
+                );
+            }catch(Exception ex)
+            {
+                Debug.WriteLine(_ctx.Entry(transaction).State);//Unchanged
+            }
+            return result;
         }
 
         public async virtual Task<Tag> AddTag(string label, string itemName)

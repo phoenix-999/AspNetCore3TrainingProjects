@@ -22,9 +22,15 @@ namespace LogsAndStrategy.Models
             Name = name;
         }
 
+        public Item()
+        {
+
+        }
+
         public string Name { get; }
 
         public IReadOnlyList<Tag> Tags => _tags;
+
 
         public Tag AddTag(string label)
         {
