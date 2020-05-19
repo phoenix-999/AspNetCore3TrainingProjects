@@ -25,7 +25,6 @@ namespace LogsAndStrategy.Controllers
         {
             await _itemRepository.AddItems(new Item("Item 1"), new Item("Item 2"));
 
-
             return View(await _itemRepository.GetAll());
         }
 

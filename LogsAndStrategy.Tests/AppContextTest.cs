@@ -26,6 +26,7 @@ namespace LogsAndStrategy.Tests
         {
             using (var context = new AppContextTest())
             {
+                var i = 1;
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 

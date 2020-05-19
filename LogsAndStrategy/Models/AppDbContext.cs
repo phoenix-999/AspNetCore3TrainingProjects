@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;
@@ -6,6 +7,8 @@ using NLog.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -19,7 +22,15 @@ namespace LogsAndStrategy.Models
             Seek();
         }
 
+        public AppDbContext()
+        {
 
+        }
+
+        public DbSet<Coords> Coords { get; set; }
+        public DbSet<ProductionCoords> ProductionCoords { get; set; }
+        public DbSet<ClientCoords> ClientCoords { get; set; }
+        public DbSet<Shedule> Shedules { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Tag> Tags { get; set; }
@@ -32,30 +43,33 @@ namespace LogsAndStrategy.Models
 
         protected virtual void Seek()
         {
-            Database.EnsureDeleted();
             bool newDbCreated = Database.EnsureCreated();
 
             if (newDbCreated)
             {
-                
+
             }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Data Source =.; Initial Catalog = Tutorials.Tests; Integrated Security = true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Ignore<Period>();
+
             modelBuilder.Entity<Item>(ItemConfig);
             modelBuilder.Entity<Tag>(TagConfig);
             modelBuilder.Entity<Employee>(EmployeeConfig);
             modelBuilder.Entity<Blog>(BlogConfig);
+            modelBuilder.Entity<Shedule>(SheduleConfig);
 
-            if(EventActionBuilder != null)
+            if (EventActionBuilder != null)
                 EventActionBuilder(modelBuilder);
         }
 
@@ -96,6 +110,21 @@ namespace LogsAndStrategy.Models
             builder.HasIndex(b => new { b.BlogId, b.BlogName})
                 .IsUnique()
                 .HasFilter("BlogName is not null");//По умолчанию в уникальных индексах поставщика SqlServer. Дл отмены HasFilter("null")
+        }
+
+        protected virtual void SheduleConfig(EntityTypeBuilder<Shedule> builder)
+        {
+            var valueComparer = new ValueComparer<ComparsionList<Period>>(
+                (c1, c2) => c1.Equals(c2),
+                c => c.GetHashCode(),
+                c => new ComparsionList<Period>(c.ToList())
+                );
+
+
+            builder.Property(s => s.Periods)
+                .HasConversion<string>((ps) => Shedule.ListToStr(ps), (str) => Shedule.StrToList(str))
+                .Metadata
+                .SetValueComparer(valueComparer);
         }
     }
 }
