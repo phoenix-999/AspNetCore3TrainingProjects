@@ -4,14 +4,16 @@ using LogsAndStrategy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LogsAndStrategy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200521094033_MenyAddresses")]
+    partial class MenyAddresses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,12 +124,12 @@ namespace LogsAndStrategy.Migrations
 
             modelBuilder.Entity("LogsAndStrategy.Models.Delivery", b =>
                 {
-                    b.Property<int>("DeliveryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasKey("DeliveryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Deliveries");
                 });
@@ -344,7 +346,6 @@ namespace LogsAndStrategy.Migrations
                                 .HasColumnType("int");
 
                             b1.Property<string>("Street")
-                                .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
                             b1.HasKey("DeliveryId", "Id");

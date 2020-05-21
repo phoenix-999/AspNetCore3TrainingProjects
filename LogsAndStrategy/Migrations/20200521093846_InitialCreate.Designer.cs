@@ -4,14 +4,16 @@ using LogsAndStrategy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LogsAndStrategy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200521093846_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,12 +124,12 @@ namespace LogsAndStrategy.Migrations
 
             modelBuilder.Entity("LogsAndStrategy.Models.Delivery", b =>
                 {
-                    b.Property<int>("DeliveryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasKey("DeliveryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Deliveries");
                 });
@@ -330,12 +332,9 @@ namespace LogsAndStrategy.Migrations
 
             modelBuilder.Entity("LogsAndStrategy.Models.Delivery", b =>
                 {
-                    b.OwnsMany("LogsAndStrategy.Models.Address", "Addresses", b1 =>
+                    b.OwnsOne("LogsAndStrategy.Models.Address", "Address", b1 =>
                         {
                             b1.Property<int>("DeliveryId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -344,12 +343,11 @@ namespace LogsAndStrategy.Migrations
                                 .HasColumnType("int");
 
                             b1.Property<string>("Street")
-                                .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("DeliveryId", "Id");
+                            b1.HasKey("DeliveryId");
 
-                            b1.ToTable("Address");
+                            b1.ToTable("Deliveries");
 
                             b1.WithOwner()
                                 .HasForeignKey("DeliveryId");

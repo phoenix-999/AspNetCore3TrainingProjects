@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using System;
@@ -27,6 +28,9 @@ namespace LogsAndStrategy.Models
 
         }
 
+        public DbSet<Delivery> Deliveries { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Coords> Coords { get; set; }
         public DbSet<ProductionCoords> ProductionCoords { get; set; }
         public DbSet<ClientCoords> ClientCoords { get; set; }
@@ -43,18 +47,14 @@ namespace LogsAndStrategy.Models
 
         protected virtual void Seek()
         {
-            bool newDbCreated = Database.EnsureCreated();
-
-            if (newDbCreated)
-            {
-
-            }
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source =.; Initial Catalog = Tutorials.Tests; Integrated Security = true");
+            //optionsBuilder.UseSqlServer("Data Source =.; Initial Catalog = Tutorials.Tests; Integrated Security = true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -68,6 +68,9 @@ namespace LogsAndStrategy.Models
             modelBuilder.Entity<Employee>(EmployeeConfig);
             modelBuilder.Entity<Blog>(BlogConfig);
             modelBuilder.Entity<Shedule>(SheduleConfig);
+            modelBuilder.Entity<Order>(OrderConfig);
+            modelBuilder.Entity<OrderDetail>(OrderDetailConfig);
+            modelBuilder.Entity<Delivery>(DeliveryConfig);
 
             if (EventActionBuilder != null)
                 EventActionBuilder(modelBuilder);
@@ -110,6 +113,13 @@ namespace LogsAndStrategy.Models
             builder.HasIndex(b => new { b.BlogId, b.BlogName})
                 .IsUnique()
                 .HasFilter("BlogName is not null");//По умолчанию в уникальных индексах поставщика SqlServer. Дл отмены HasFilter("null")
+
+            builder.Property<byte[]>("RowVersion").IsRowVersion();
+            builder.Property<int>("_id").HasComputedColumnSql("BlogId");
+            builder.Property(b => b.Title).HasDefaultValue("Title");
+            builder.Property("Author").HasDefaultValue("Author");
+
+            builder.HasData(new Blog { BlogId = 11, BlogName = "Test blog" }, new Blog { BlogId = 20, BlogName = "Test blog 2" });
         }
 
         protected virtual void SheduleConfig(EntityTypeBuilder<Shedule> builder)
@@ -125,6 +135,39 @@ namespace LogsAndStrategy.Models
                 .HasConversion<string>((ps) => Shedule.ListToStr(ps), (str) => Shedule.StrToList(str))
                 .Metadata
                 .SetValueComparer(valueComparer);
+        }
+
+        protected virtual void OrderConfig(EntityTypeBuilder<Order> builder)
+        {
+            builder.ToTable("Orders");
+            builder.HasOne(o => o.OrderDetail).WithOne(od => od.Order).HasForeignKey<OrderDetail>(od => od.Id);//Будет общим полем
+            builder.Property(o => o.Status).HasColumnName("Status");//Значение в общих полях должно быть одинаковое
+            builder.Property<byte[]>("RowVersion").IsRowVersion().HasColumnName("RowVersion");//Должно быть в главной и зависимой сущности при разделении таблицы с явно указаным одинаковым именем (иначе будет сгенерировано имя с приставкой типа сущности)
+        }
+
+        protected virtual void OrderDetailConfig(EntityTypeBuilder<OrderDetail> builder)
+        {
+            builder.ToTable("Orders");
+            builder.Property(o => o.Status).HasColumnName("Status");//Значение в общих полях должно быть одинаковое
+            builder.Property<byte[]>("RowVersion").IsRowVersion().HasColumnName("RowVersion");//Должно быть в главной и зависимой сущности при разделении таблицы с явно указаным одинаковым именем (иначе будет сгенерировано имя с приставкой типа сущности)
+        }
+
+        protected virtual void DeliveryConfig(EntityTypeBuilder<Delivery> builder)
+        {
+            builder.OwnsMany(d => d.Addresses, a => {
+                a.Property<int>("Id");
+                a.HasKey("Id");
+                a.OwnsMany<Belay>(ad => ad.AddressBelay);
+            });
+
+            builder.OwnsMany(d => d.DefaultAddresses, a => {
+                a.Property<int>("Id");
+                a.HasKey("Id");
+                a.OwnsMany<Belay>(ad => ad.AddressBelay);
+            });
+
+            builder.OwnsOne(typeof(Belay), "Belay");
+            builder.OwnsOne(typeof(Belay), "DefaultBelay");
         }
     }
 }

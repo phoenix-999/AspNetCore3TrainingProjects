@@ -87,5 +87,102 @@ namespace LogsAndStrategy.Tests
             Assert.Null(remainingPost.BlogId);
             Assert.Null(remainingPost.Blog);
         }
+
+        [Fact]
+        public void CanHasProtectedField()
+        {
+            var blog = new Blog { BlogName = "Blog 1" };
+            using(var ctx = new AppContextTest(true))
+            {
+                ctx.Blogs.Add(blog);
+                ctx.SaveChanges();
+            }
+
+            Assert.Equal("Author", blog.GetAuthor());
+        }
+
+        [Fact]
+        public void CanHasReadOnlyProperty()
+        {
+            var blog = new Blog { BlogName = "Blog 1" };
+            using (var ctx = new AppContextTest(true))
+            {
+                ctx.Blogs.Add(blog);
+                ctx.SaveChanges();
+            }
+
+            Assert.Equal("Title", blog.Title);
+        }
+
+        [Fact]
+        public void CanHasPrivateSetProperty()
+        {
+            var blog = new Blog { BlogName = "Blog 1" };
+            blog.SetYear(1900);
+            using (var ctx = new AppContextTest(true))
+            {
+                ctx.Blogs.Add(blog);
+                ctx.SaveChanges();
+            }
+
+            Assert.Equal(1900, blog.Year);
+        }
+
+        [Fact]
+        public void CanHasReadOnlyField()
+        {
+            var blog = new Blog { BlogName = "Blog 1" };
+            blog.SetYear(1900);
+            using (var ctx = new AppContextTest(true))
+            {
+                ctx.Blogs.Add(blog);
+                ctx.SaveChanges();
+            }
+
+            Assert.Equal(blog.BlogId, blog.GetId());
+        }
+
+        [Fact]
+        public void ParamsContructHasNotPriority()
+        {
+            var blog = new Blog { BlogName = "Blog 1" };
+            blog.SetYear(1900);
+            using (var ctx = new AppContextTest(true))
+            {
+                ctx.Blogs.Add(blog);
+                ctx.SaveChanges();
+                ctx.Database.OpenConnection();
+                ctx.Database.ExecuteSqlRaw($"update Blogs set Era='Current' where BlogId = {blog.BlogId}");
+            }
+
+            Blog savedBlog = null;
+            using (var ctx = new AppContextTest())
+            {
+                savedBlog = ctx.Blogs.Where(b => b.BlogId == blog.BlogId).Single();
+            }
+
+            Assert.Equal("Current", savedBlog.Era);
+            Assert.False(savedBlog.Token);
+        }
+
+        [Fact]
+        public void CanNotInjectionServiceInConstruct()
+        {
+            var blog = new Blog { BlogName = "Blog 1" };
+            blog.SetYear(1900);
+            using (var ctx = new AppContextTest(true))
+            {
+                ctx.Blogs.Add(blog);
+                ctx.SaveChanges();
+            }
+
+            Blog savedBlog = null;
+            using (var ctx = new AppContextTest())
+            {
+                savedBlog = ctx.Blogs.Where(b => b.BlogId == blog.BlogId).Single();
+            }
+
+            Assert.Null(savedBlog.GetContext());
+        }
     }
 }
