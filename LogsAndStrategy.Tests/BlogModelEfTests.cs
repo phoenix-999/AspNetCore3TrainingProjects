@@ -184,5 +184,19 @@ namespace LogsAndStrategy.Tests
 
             Assert.Null(savedBlog.GetContext());
         }
+
+        [Fact]
+        public void CanReadKeylessEntity()
+        {
+            BlogExtension blogExtension = null;
+            using (var ctx = new AppContextTest(true))
+            {
+                ctx.CreateViews();
+                blogExtension = ctx.BlogExtensions.FirstOrDefault();
+            }
+
+            Assert.NotNull(blogExtension);
+            Assert.NotEqual(default, blogExtension.CountBlogs);
+        }
     }
 }

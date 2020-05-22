@@ -28,6 +28,7 @@ namespace LogsAndStrategy.Models
 
         }
 
+        public DbSet<BlogExtension> BlogExtensions { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -49,6 +50,20 @@ namespace LogsAndStrategy.Models
         {
             //Database.EnsureDeleted();
             //Database.EnsureCreated();
+            
+        }
+
+        public virtual void CreateViews()
+        {
+            Database.OpenConnection();
+            Database.ExecuteSqlRaw(
+                @"IF OBJECT_ID('dbo.BlogCountView') IS not NULL
+                    BEGIN
+                        DROP VIEW dbo.BlogCountView
+                    END
+
+                EXEC('CREATE VIEW dbo.BlogCountView AS select count(*) as CountBlogs from Blogs')"
+                );
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -71,6 +86,7 @@ namespace LogsAndStrategy.Models
             modelBuilder.Entity<Order>(OrderConfig);
             modelBuilder.Entity<OrderDetail>(OrderDetailConfig);
             modelBuilder.Entity<Delivery>(DeliveryConfig);
+            modelBuilder.Entity<BlogExtension>(BlogExtensionConfig);
 
             if (EventActionBuilder != null)
                 EventActionBuilder(modelBuilder);
@@ -168,6 +184,12 @@ namespace LogsAndStrategy.Models
 
             builder.OwnsOne(typeof(Belay), "Belay");
             builder.OwnsOne(typeof(Belay), "DefaultBelay");
+        }
+
+        protected virtual void BlogExtensionConfig(EntityTypeBuilder<BlogExtension> builder)
+        {
+            builder.HasNoKey();
+            builder.ToView("BlogCountView");
         }
     }
 }
