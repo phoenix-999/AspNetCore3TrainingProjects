@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -43,6 +44,9 @@ namespace LogsAndStrategy.Models
         public DbSet<Post> Posts { get; set; }
         public DbSet<AppTransaction> Transactions { get; set; }
 
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<School> Schools { get; set; }
+
         public delegate void ActionBuilder(ModelBuilder builder);
         public static event ActionBuilder EventActionBuilder;
 
@@ -69,6 +73,7 @@ namespace LogsAndStrategy.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLazyLoadingProxies(/*useLazyLoadingProxies: false*/);
             //optionsBuilder.UseSqlServer("Data Source =.; Initial Catalog = Tutorials.Tests; Integrated Security = true");
         }
 
@@ -87,9 +92,15 @@ namespace LogsAndStrategy.Models
             modelBuilder.Entity<OrderDetail>(OrderDetailConfig);
             modelBuilder.Entity<Delivery>(DeliveryConfig);
             modelBuilder.Entity<BlogExtension>(BlogExtensionConfig);
+            modelBuilder.Entity<School>(SchoolConfig);
 
             if (EventActionBuilder != null)
                 EventActionBuilder(modelBuilder);
+        }
+
+        protected virtual void SchoolConfig(EntityTypeBuilder<School> builder)
+        {
+            builder.HasMany(s => s.Students).WithOne(s => s.School);
         }
 
         protected virtual void ItemConfig(EntityTypeBuilder<Item> builder)

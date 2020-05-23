@@ -9,10 +9,10 @@ namespace LogsAndStrategy.Models
     public class Delivery
     {
         public int DeliveryId { get; set; }
-        public List<Address> Addresses { get; set; }
-        public List<Address> DefaultAddresses { get; set; }
-        private Belay Belay { get; set; }
-        private Belay DefaultBelay { get; set; }
+        public virtual List<Address> Addresses { get; set; }
+        public virtual List<Address> DefaultAddresses { get; set; }
+        protected virtual Belay Belay { get; set; }
+        protected virtual Belay DefaultBelay { get; set; }
     }
 
     public class Address
@@ -20,7 +20,7 @@ namespace LogsAndStrategy.Models
         [Required]
         public string Street { get; set; }
         public int Number { get; set; }
-        public List<Belay> AddressBelay { get; set; }
+        public virtual List<Belay> AddressBelay { get; set; }
     }
 
     public class Belay

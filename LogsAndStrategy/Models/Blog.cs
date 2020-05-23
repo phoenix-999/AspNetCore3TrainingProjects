@@ -12,11 +12,13 @@ namespace LogsAndStrategy.Models
         public int BlogId { get; set; }
         private readonly int _id;
         public string BlogName { get; set; }
-        public List<Post> Posts { get; set; }
+        public virtual List<Post> Posts { get; set; }
         protected string Author { get; set; }
         public string Title { get; }
         public int Year { get; private set; }
         public string Era { get; private set; }
+        [NotMapped]
+        public int Count { get; set; } = 0;
         [NotMapped]
         public bool Token { get; set; }
         [NotMapped]
@@ -51,6 +53,12 @@ namespace LogsAndStrategy.Models
         public AppDbContext GetContext()
         {
             return Context;
+        }
+
+        public Blog InceremntCount()
+        {
+            this.Count++;
+            return this;
         }
     }
 }

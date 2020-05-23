@@ -10,6 +10,6 @@ namespace LogsAndStrategy.Models
         public int PostId { get; set; }
         public string PostName { get; set; }
         public int? BlogId { get; set; }
-        public Blog Blog { get; set; }
+        public virtual Blog Blog { get; set; }
     }
 }

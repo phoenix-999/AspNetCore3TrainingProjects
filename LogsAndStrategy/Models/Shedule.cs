@@ -11,7 +11,7 @@ namespace LogsAndStrategy.Models
     {
         public int Id { get; set; }
 
-        public ComparsionList<Period> Periods { get; set; }
+        public virtual ComparsionList<Period> Periods { get; set; }
         public byte[] ByteProperty { get; set; }
 
         public static string ListToStr(ComparsionList<Period> periods)

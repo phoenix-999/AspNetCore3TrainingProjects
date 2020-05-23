@@ -29,7 +29,7 @@ namespace LogsAndStrategy.Models
 
         public string Name { get; }
 
-        public IReadOnlyList<Tag> Tags => _tags;
+        public virtual IReadOnlyList<Tag> Tags => _tags;
 
 
         public Tag AddTag(string label)

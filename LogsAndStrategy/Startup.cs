@@ -28,8 +28,11 @@ namespace LogsAndStrategy
         {
             services.AddDbContext<AppDbContext>(optBuilder =>
             {
-                optBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
-                    ,opt => opt.EnableRetryOnFailure());
+                //optBuilder.UseLazyLoadingProxies();//Указано в AppDbContext, так как тестирование не учитывает настроек Startup
+                optBuilder.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")
+                    , opt => opt.EnableRetryOnFailure()
+                );
             });
             services.UseStorageRepositories();
 
