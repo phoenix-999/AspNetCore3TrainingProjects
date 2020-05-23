@@ -30,11 +30,11 @@ namespace LogsAndStrategy.Tests
             using (var ctx = new AppContextTest())
             {
                 savedSchool = ctx.Schools.Include(s => s.Students).Where(s => s.Id == school.Id).Single();
-                savedStudent = ctx.People.AsEnumerable().Where(p => p as Student != null).Single() as Student;
+                savedStudent = ctx.People.Include("School").Where(s => s.Id == student.Id).Single() as Student;
             }
             Assert.NotNull(savedSchool);
             Assert.Single(savedSchool.Students);
-            Assert.Equal(savedSchool, savedSchool.Students[0].School);
+            Assert.Equal(savedSchool, savedStudent.School);
 
             Assert.Equal(student.Id, savedStudent.Id);
         }
