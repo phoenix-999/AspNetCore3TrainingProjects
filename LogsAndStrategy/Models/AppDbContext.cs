@@ -74,7 +74,7 @@ namespace LogsAndStrategy.Models
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseLazyLoadingProxies(/*useLazyLoadingProxies: false*/);
-            //optionsBuilder.UseSqlServer("Data Source =.; Initial Catalog = Tutorials.Tests; Integrated Security = true");
+            optionsBuilder.UseSqlServer("Data Source =.; Initial Catalog = Tutorials.Tests; Integrated Security = true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -151,7 +151,7 @@ namespace LogsAndStrategy.Models
 
         protected virtual void SheduleConfig(EntityTypeBuilder<Shedule> builder)
         {
-            var valueComparer = new ValueComparer<ComparsionList<Period>>(
+            var valueComparer = new ValueComparer<ComparsionList<Period>>(//Только для полей с изменияемыми типами. Не касается колекций навигации
                 (c1, c2) => c1.Equals(c2),
                 c => c.GetHashCode(),
                 c => new ComparsionList<Period>(c.ToList())

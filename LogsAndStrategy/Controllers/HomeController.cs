@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using LogsAndStrategy.Models;
 using LogsAndStrategy.StorageRepositories;
+using System.Transactions;
+using System.Data.SQLite;
 
 namespace LogsAndStrategy.Controllers
 {
@@ -21,8 +23,70 @@ namespace LogsAndStrategy.Controllers
             _itemRepository = itemRepository;
         }
 
+        void TransactionTest()
+        {
+            Blog blog = new Blog { BlogName = "Blog 1" };
+            #region Sqlite
+            if (!System.IO.File.Exists(@"C:\TestDB.db"))
+            {
+                SQLiteConnection.CreateFile(@"C:\TestDB.db");
+            }
+
+            using (SQLiteConnection Connect = new SQLiteConnection(@"Data Source=C:\TestDB.db; Version=3;")) // в строке указывается к какой базе подключаемся
+            {
+                // строка запроса, который надо будет выполнить
+                string commandText = "Drop TABLE IF EXISTS [dbTableName]";
+                SQLiteCommand Command = new SQLiteCommand(commandText, Connect);
+                Connect.Open(); // открыть соединение
+                Command.ExecuteNonQuery(); // выполнить запрос
+                Connect.Close();
+            }
+
+            using (SQLiteConnection Connect = new SQLiteConnection(@"Data Source=C:\TestDB.db; Version=3;")) // в строке указывается к какой базе подключаемся
+            {
+                // строка запроса, который надо будет выполнить
+                string commandText = "CREATE TABLE IF NOT EXISTS [dbTableName] ( [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, [str] VARCHAR(10) )";
+                SQLiteCommand Command = new SQLiteCommand(commandText, Connect);
+                Connect.Open(); // открыть соединение
+                Command.ExecuteNonQuery(); // выполнить запрос
+                Connect.Close();
+            }
+
+            #endregion
+            try
+            {
+                using (var transaction = new TransactionScope())
+                {
+
+                    using (var ctx = new AppDbContext())
+                    {
+                        ctx.Blogs.Add(blog);
+                        ctx.SaveChanges();
+                    }
+
+                    #region SqLite
+
+                    using (SQLiteConnection Connect = new SQLiteConnection(@"Data Source=C:\TestDB.db; Version=3;")) // в строке указывается к какой базе подключаемся
+                    {
+                        string commandText = "insert into [dbTableName] ([str]) values ('test')";
+                        SQLiteCommand Command = new SQLiteCommand(commandText, Connect);
+                        Connect.Open(); // открыть соединение
+                        Command.ExecuteNonQuery();
+                        Connect.Close(); // закрыть соединение
+                    }
+
+                    #endregion
+
+                    throw new InvalidCastException();
+                    transaction.Complete();
+                }
+            }
+            catch (InvalidCastException) { }
+        }
+
         public async Task<IActionResult> Index()
         {
+            //TransactionTest();
             await _itemRepository.AddItems(new Item("Item 1"), new Item("Item 2"));
 
             return View(await _itemRepository.GetAll());

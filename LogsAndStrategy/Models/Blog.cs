@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace LogsAndStrategy.Models
 {
-    public class Blog
+    public class Blog : IDisposable
     {
         public int BlogId { get; set; }
         private readonly int _id;
         public string BlogName { get; set; }
         public virtual List<Post> Posts { get; set; }
+        public virtual byte[] Bytes { get; set; }
         protected string Author { get; set; }
         public string Title { get; }
         public int Year { get; private set; }
@@ -59,6 +61,16 @@ namespace LogsAndStrategy.Models
         {
             this.Count++;
             return this;
+        }
+
+        public void Dispose()
+        {
+            Debug.WriteLine("Blog dispose");
+        }
+
+        ~Blog()
+        {
+            Debug.WriteLine("Blog finalize");
         }
     }
 }

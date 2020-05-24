@@ -2,8 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Transactions;
 using Xunit;
 using static LogsAndStrategy.Models.AppDbContext;
 
@@ -143,7 +146,7 @@ namespace LogsAndStrategy.Tests
         }
 
         [Fact]
-        public void ParamsContructHasNotPriority()//False
+        public void ParamsContructHasPriority()//False
         {
             var blog = new Blog { BlogName = "Blog 1" };
             blog.SetYear(1900);
@@ -341,5 +344,169 @@ namespace LogsAndStrategy.Tests
         //    }
         //}
 
+        [Fact]
+        public void CanModifiedOneEntity()
+        {
+            var blog = new Blog { BlogName = "Blog 1" };
+            var posts = new List<Post> { new Post { PostName = "Post 1" } };
+            blog.Posts = posts;
+            using(var ctx = new AppContextTest(true))
+            {
+                ctx.Entry(blog).State = EntityState.Added;
+                ctx.SaveChanges();
+            }
+
+            Blog savedBlog = null;
+            using(var ctx = new AppContextTest())
+            {
+                savedBlog = ctx.Blogs.Include(b => b.Posts).Where(b => b.BlogId == blog.BlogId).Single();
+            }
+            Assert.Empty(savedBlog.Posts);
+        }
+
+        [Fact]
+        public void CanAddRelatedEntityInCollectionWithoutRedefinitionValueComparerOnTrackingEntity()
+        {
+            var blog = new Blog { BlogName = "Blog 1", Bytes = new byte[2] { 1 , 1} };
+            var posts = new List<Post> { new Post { PostName = "Post 1" } };
+            blog.Posts = posts;
+            using (var ctx = new AppContextTest(true))
+            {
+                ctx.Blogs.Add(blog);
+                ctx.SaveChanges();
+            }
+
+            Blog savedBlog = null;
+            using (var ctx = new AppContextTest())
+            {
+                savedBlog = ctx.Blogs.Include(b => b.Posts).Where(b => b.BlogId == blog.BlogId).Single();
+                savedBlog.Posts.Add(new Post { PostName = "Post 2" });
+                savedBlog.Bytes[0] = 2;
+                ctx.SaveChanges();
+            }
+            Assert.Equal(2, savedBlog.Posts.Count);
+
+            using (var ctx = new AppContextTest())
+            {
+                savedBlog = ctx.Blogs.Where(b => b.BlogId == blog.BlogId).Single();
+                ctx.SaveChanges();
+            }
+            Assert.NotEqual(2, savedBlog.Bytes[0]);
+        }
+
+        [Fact]
+        public void CanChangeRelatedEntity()
+        {
+            var blog = new Blog { BlogName = "Blog 1", Bytes = new byte[2] { 1, 1 } };
+            Blog newBlog = new Blog { BlogName = "Blog 2" };
+            var posts = new List<Post> { new Post { PostName = "Post 1" } };
+            blog.Posts = posts;
+            using (var ctx = new AppContextTest(true))
+            {
+                ctx.Blogs.AddRange(blog, newBlog);
+                ctx.SaveChanges();
+            }
+
+            posts.Add(new Post { PostName = "Post 2" });
+            using (var ctx = new AppContextTest())
+            {
+                ctx.Attach(newBlog);
+                newBlog.Posts = posts;
+                //каждый элемент newBlog.Posts провреяеться на наличие ключа сгенеррованного БД
+                //Если ключ существует - update, иначе - add
+                ctx.SaveChanges();
+            }
+
+            Assert.Equal(2, newBlog.Posts.Count);
+        }
+
+        [Fact]
+        public void CanWorkInTransactionScopeForManyStore()
+        {
+            Blog blog = new Blog { BlogName = "Blog 1" };
+            #region Sqlite
+            if (!File.Exists(@"C:\TestDB.db"))
+            {
+                SQLiteConnection.CreateFile(@"C:\TestDB.db");
+            }
+
+            using (SQLiteConnection Connect = new SQLiteConnection(@"Data Source=C:\TestDB.db; Version=3;")) // в строке указывается к какой базе подключаемся
+            {
+                // строка запроса, который надо будет выполнить
+                string commandText = "Drop TABLE IF EXISTS [dbTableName]";
+                SQLiteCommand Command = new SQLiteCommand(commandText, Connect);
+                Connect.Open(); // открыть соединение
+                Command.ExecuteNonQuery(); // выполнить запрос
+                Connect.Close();
+            }
+
+            using (SQLiteConnection Connect = new SQLiteConnection(@"Data Source=C:\TestDB.db; Version=3;")) // в строке указывается к какой базе подключаемся
+            {
+                // строка запроса, который надо будет выполнить
+                string commandText = "CREATE TABLE IF NOT EXISTS [dbTableName] ( [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, [str] VARCHAR(10) )";
+                SQLiteCommand Command = new SQLiteCommand(commandText, Connect);
+                Connect.Open(); // открыть соединение
+                Command.ExecuteNonQuery(); // выполнить запрос
+                Connect.Close();
+            }
+
+            #endregion
+            try
+            {
+                using (var transaction = new TransactionScope())
+                {
+
+                    using (var ctx = new AppContextTest(true))
+                    {
+                        ctx.Blogs.Add(blog);
+                        ctx.SaveChanges();
+                    }
+
+                    #region SqLite
+                    
+                    using (SQLiteConnection Connect = new SQLiteConnection(@"Data Source=C:\TestDB.db; Version=3;")) // в строке указывается к какой базе подключаемся
+                    {
+                        string commandText = "insert into [dbTableName] ([str]) values ('test')";
+                        SQLiteCommand Command = new SQLiteCommand(commandText, Connect);
+                        Connect.Open(); // открыть соединение
+                        Command.ExecuteNonQuery();
+                        Connect.Close(); // закрыть соединение
+                    }
+
+                    #endregion
+
+                    throw new InvalidCastException();
+                    transaction.Complete();
+                }
+            }
+            catch (InvalidCastException) { }
+
+            #region SqLite
+
+            using (SQLiteConnection Connect = new SQLiteConnection(@"Data Source=C:\TestDB.db; Version=3;")) // в строке указывается к какой базе подключаемся
+            {
+                Connect.Open();
+                SQLiteCommand Command = new SQLiteCommand
+                {
+                    Connection = Connect,
+                    CommandText = @"SELECT str FROM [dbTableName]"
+                };
+                SQLiteDataReader sqlReader = Command.ExecuteReader();
+                string str = "";
+                while (sqlReader.Read())
+                {
+                    str += sqlReader["str"].ToString().TrimStart().TrimEnd();
+                }
+                Connect.Close();
+                Assert.Empty(str);
+            }
+            #endregion
+
+            using (var ctx = new AppContextTest(true))
+            {
+                var savedBlog = ctx.Blogs.Where(b => b.BlogId == blog.BlogId).SingleOrDefault();
+                Assert.Null(savedBlog);
+            }
+        }
     }
 }

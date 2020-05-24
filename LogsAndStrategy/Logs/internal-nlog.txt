@@ -1140,3 +1140,27 @@
 2020-05-22 10:20:53.9802 Info Found 65 configuration items
 2020-05-22 10:20:53.9982 Info Configuration initialized.
 2020-05-22 10:20:53.9982 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.0.11381. Product version: 4.7.0+4d138800820311d0b60b6437f1dd2ed1d571d47d.
+2020-05-24 13:23:20.7680 Info Message Template Auto Format enabled
+2020-05-24 13:23:20.8497 Info Loading assembly: NLog.Web.AspNetCore
+2020-05-24 13:23:20.9158 Info Adding target FileTarget(Name=allfile)
+2020-05-24 13:23:20.9158 Info Adding target FileTarget(Name=dbfile)
+2020-05-24 13:23:20.9158 Info Adding target FileTarget(Name=ownFile-web)
+2020-05-24 13:23:20.9466 Info Found 65 configuration items
+2020-05-24 13:23:20.9856 Info Configuration initialized.
+2020-05-24 13:23:20.9905 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.0.11381. Product version: 4.7.0+4d138800820311d0b60b6437f1dd2ed1d571d47d.
+2020-05-24 13:23:47.8166 Info Message Template Auto Format enabled
+2020-05-24 13:23:47.8271 Info Loading assembly: NLog.Web.AspNetCore
+2020-05-24 13:23:47.8666 Info Adding target FileTarget(Name=allfile)
+2020-05-24 13:23:47.8666 Info Adding target FileTarget(Name=dbfile)
+2020-05-24 13:23:47.8666 Info Adding target FileTarget(Name=ownFile-web)
+2020-05-24 13:23:47.8967 Info Found 65 configuration items
+2020-05-24 13:23:47.9133 Info Configuration initialized.
+2020-05-24 13:23:47.9133 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.0.11381. Product version: 4.7.0+4d138800820311d0b60b6437f1dd2ed1d571d47d.
+2020-05-24 13:24:08.0636 Info Message Template Auto Format enabled
+2020-05-24 13:24:08.0737 Info Loading assembly: NLog.Web.AspNetCore
+2020-05-24 13:24:08.1143 Info Adding target FileTarget(Name=allfile)
+2020-05-24 13:24:08.1302 Info Adding target FileTarget(Name=dbfile)
+2020-05-24 13:24:08.1302 Info Adding target FileTarget(Name=ownFile-web)
+2020-05-24 13:24:08.1551 Info Found 65 configuration items
+2020-05-24 13:24:08.1716 Info Configuration initialized.
+2020-05-24 13:24:08.1771 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.0.11381. Product version: 4.7.0+4d138800820311d0b60b6437f1dd2ed1d571d47d.
