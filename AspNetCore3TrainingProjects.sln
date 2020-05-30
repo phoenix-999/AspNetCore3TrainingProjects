@@ -41,11 +41,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogsAndStrategy", "LogsAndS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogsAndStrategy.Tests", "LogsAndStrategy.Tests\LogsAndStrategy.Tests.csproj", "{94393A32-93D6-442C-A40D-FA2C0BC68527}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IStartupFilterExample", "IStartupFilterExample\IStartupFilterExample.csproj", "{F7615DEB-4A33-4AB1-A29E-31A988E42062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IStartupFilterExample", "IStartupFilterExample\IStartupFilterExample.csproj", "{F7615DEB-4A33-4AB1-A29E-31A988E42062}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryAddEnumerableExample", "TryAddEnumerableExample\TryAddEnumerableExample.csproj", "{C2775324-45F0-4F85-ADA1-91BF8BC89631}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TryAddEnumerableExample", "TryAddEnumerableExample\TryAddEnumerableExample.csproj", "{C2775324-45F0-4F85-ADA1-91BF8BC89631}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingletonServiceExample", "SingletonServiceExample\SingletonServiceExample.csproj", "{CAED4962-2BF0-4655-BA85-794F2711D42D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingletonServiceExample", "SingletonServiceExample\SingletonServiceExample.csproj", "{CAED4962-2BF0-4655-BA85-794F2711D42D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadersMiddleware", "HeadersMiddleware\HeadersMiddleware.csproj", "{1E75123E-D057-4F8D-98D5-9A5440B2252A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,6 +135,10 @@ Global
 		{CAED4962-2BF0-4655-BA85-794F2711D42D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAED4962-2BF0-4655-BA85-794F2711D42D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAED4962-2BF0-4655-BA85-794F2711D42D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E75123E-D057-4F8D-98D5-9A5440B2252A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E75123E-D057-4F8D-98D5-9A5440B2252A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E75123E-D057-4F8D-98D5-9A5440B2252A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E75123E-D057-4F8D-98D5-9A5440B2252A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
